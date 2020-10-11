@@ -68,13 +68,15 @@ public class Display extends Canvas implements Runnable{
 			long now = System.nanoTime();
 			delta += (now-lasttime)/ns;
 			lasttime = now;
+			
+			init();
+
 			while(delta>=1) {
 				update();
 				delta--;
+				render();
+				frames++;
 			}
-			init();
-			render();
-			frames++;
 			if(System.currentTimeMillis()-timer>=1000) {
 				timer+=1000;
 				this.frame.setTitle(title+" - "+ frames+ "fps");
@@ -96,16 +98,17 @@ public class Display extends Canvas implements Runnable{
 		MyPoint p8 = new MyPoint(-s/2,-s/2,s/2);
 		
 		this.tetra = new Tetrahedron(
-				Color.RED,
-				new MyPolygons(p1,p2,p3,p4),
-				new MyPolygons(p5,p6,p7,p8),
-				new MyPolygons(p1,p2,p5,p6),
-				new MyPolygons(p3,p4,p7,p8),
-				new MyPolygons(p1,p4,p5,p8),
-				new MyPolygons(p2,p3,p6,p7)
+				new MyPolygons(Color.BLUE,p5,p6,p7,p8),
+				new MyPolygons(Color.GREEN,p1,p2,p6,p5 ),
+				new MyPolygons(Color.YELLOW,p4,p3,p7,p8),
+				new MyPolygons(Color.WHITE,p1,p5,p8,p4),
+				new MyPolygons(Color.ORANGE,p2,p6,p7,p3),
+				new MyPolygons(Color.RED,p1,p2,p3,p4)
 				);
+//		this.tetra.rotate(true,0, 30, 45);
 	}
 	private void render() {
+
 		BufferStrategy bs= this.getBufferStrategy();
 		if(bs==null) {
 			this.createBufferStrategy(3);
@@ -114,15 +117,15 @@ public class Display extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH*2, HEIGHT*2);
-		
 		this.tetra.render(g);
 		g.dispose();
 		bs.show();
 		
 		
 	}
+	int x=0;
 	private void update() {
-		
+	this.tetra.rotate(true,x-- , x++, x+=2);
 	}
 	
 }
