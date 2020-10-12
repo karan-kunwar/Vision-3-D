@@ -3,11 +3,12 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
-
+import java.awt.image.BufferStrategy;	
+import renderer.input.Mouse;
 import javax.swing.JFrame;
-
 import renderer.point.MyPoint;
+import renderer.point.PointConverter;
+import renderer.input.ClickType;
 import renderer.shapes.MyPolygons;
 import renderer.shapes.Tetrahedron;
 
@@ -21,16 +22,22 @@ public class Display extends Canvas implements Runnable{
 	public static final int HEIGHT= 600;
 	private static boolean running =false;
 	private Tetrahedron tetra; 
+	private Mouse mouse;
 	
 	public Display() {
 		this.frame = new JFrame();
 		
 		Dimension size = new Dimension(WIDTH,HEIGHT);
 		this.setPreferredSize(size);
+		this.mouse = new Mouse();
+		
+		this.addMouseListener(this.mouse);
+		this.addMouseMotionListener(this.mouse);
+		this.addMouseWheelListener(this.mouse);
 	}
 	
 	public synchronized void start() {
-		running = true;
+		running = true; 
 		this.thread = new Thread(this, "Display");
 		this.thread.start();
 	}
@@ -70,7 +77,6 @@ public class Display extends Canvas implements Runnable{
 			lasttime = now;
 			
 			init();
-
 			while(delta>=1) {
 				update();
 				delta--;
@@ -86,6 +92,7 @@ public class Display extends Canvas implements Runnable{
 		stop();
 		
 	}
+
 	private void init() {
 		int s = 100;
 		MyPoint p1 = new MyPoint(s/2,-s/2,-s/2);
@@ -105,7 +112,7 @@ public class Display extends Canvas implements Runnable{
 				new MyPolygons(Color.ORANGE,p2,p6,p7,p3),
 				new MyPolygons(Color.RED,p1,p2,p3,p4)
 				);
-//		this.tetra.rotate(true,0, 30, 45);
+		
 	}
 	private void render() {
 
@@ -116,16 +123,29 @@ public class Display extends Canvas implements Runnable{
 		}
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, WIDTH*2, HEIGHT*2);
-		this.tetra.render(g);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		tetra.render(g);
 		g.dispose();
 		bs.show();
 		
 		
 	}
-	int x=0;
+	ClickType prevClick = ClickType.Unknown;
+	int initialX,initialY;
 	private void update() {
-	this.tetra.rotate(true,x-- , x++, x+=2);
+		System.out.println(1);
+		this.tetra.rotate(true, 1, 0, 0);
+//		int x= this.mouse.getX();
+//		int y= this.mouse.getY();
+//		if(this.mouse.getButton() == ClickType.LeftClick) {
+//			int xDiff = x -initialX;
+//			int yDiff = y -initialY;
+//			this.tetra.rotate(true, 0, -(xDiff), -(yDiff));
+//		}
+//		initialX= x;
+//		initialY= y;
+//		 this.tetra.rotate(true, 1,0, 0);
+		
 	}
-	
 }
