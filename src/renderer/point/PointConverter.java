@@ -30,9 +30,7 @@ public class PointConverter {
 		return newCoord;
 	}
 	public static void rotateAlongX(MyPoint p, boolean clockwise, double degrees) {
-//		double radius = Math.sqrt(p.y*p.y+p.z*p.z);
-//		double theta = Math.atan2(p.z, p.y);
-		double theta = 2*Math.PI/360*degrees*(clockwise?-1:1);
+		double theta =2*Math.PI/360*degrees*(clockwise?-1:1);
 		double tempY=0.0,tempZ=0.0;
 		tempY= Math.cos(theta)*p.y-Math.sin(theta)*p.z;
 		tempZ= Math.sin(theta)*p.y+Math.cos(theta)*p.z;
@@ -40,8 +38,6 @@ public class PointConverter {
 		p.z = tempZ;
 	} 
 	public static void rotateAlongY(MyPoint p, boolean clockwise, double degrees) {
-//		double radius = Math.sqrt(p.x*p.x+p.z*p.z);
-//		double theta = Math.atan2(p.x, p.z);
 		double theta = 2* (Math.PI/360)*degrees*(clockwise?-1:1);
 		double tempX=0.0,tempZ=0.0;
 		tempX = Math.cos(theta)*p.x+Math.sin(theta)*p.z;
@@ -50,8 +46,6 @@ public class PointConverter {
 		p.z = tempZ;
 	} 
 	public static void rotateAlongZ(MyPoint p, boolean clockwise, double degrees) {
-//		double radius = Math.sqrt(p.y*p.y+p.x*p.x);
-//		double theta = Math.atan2(p.y, p.x);
 		double theta = 2* (Math.PI/360)*degrees*(clockwise?-1:1);
 		double tempX=0.0,tempY=0.0;
 		tempX = Math.cos(theta)*p.x-Math.sin(theta)*p.y;

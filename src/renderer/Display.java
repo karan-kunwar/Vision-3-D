@@ -67,16 +67,16 @@ public class Display extends Canvas implements Runnable{
 	public void run() {
 		long lasttime= System.nanoTime();
 		long timer = System.currentTimeMillis();
-		final double ns = 1000000000.0/60;
+		final double ns = 1000000000.0/30;
 		double delta = 0;
 		int frames=0;
-	
+		init();
 		while(running) {
 			long now = System.nanoTime();
 			delta += (now-lasttime)/ns;
 			lasttime = now;
 			
-			init();
+			
 			while(delta>=1) {
 				update();
 				delta--;
@@ -134,7 +134,7 @@ public class Display extends Canvas implements Runnable{
 //	ClickType prevClick = ClickType.Unknown;
 	int initialX=0,initialY=0;
 	private void update() {
-		this.tetra.rotate(true, initialX++, initialY--, initialX++);
+		this.tetra.rotate(true, 1, -1, 2);
 //		if(initialX)
 //		int x= this.mouse.getX();
 //		int y= this.mouse.getY();
