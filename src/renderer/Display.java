@@ -97,7 +97,7 @@ public class Display extends Canvas implements Runnable{
 		int s = 100;
 		MyPoint p1 = new MyPoint(s/2,-s/2,-s/2);
 		MyPoint p2 = new MyPoint(s/2,s/2,-s/2);
-		MyPoint p3 = new MyPoint(s/2,s/2,s/2);
+		MyPoint  p3 = new MyPoint(s/2,s/2,s/2);
 		MyPoint p4 = new MyPoint(s/2,-s/2,s/2);
 		MyPoint p5 = new MyPoint(-s/2,-s/2,-s/2);
 		MyPoint p6 = new MyPoint(-s/2,s/2,-s/2);
@@ -131,21 +131,28 @@ public class Display extends Canvas implements Runnable{
 		
 		
 	}
-//	ClickType prevClick = ClickType.Unknown;
+	ClickType prevClick = ClickType.Unknown;
 	int initialX=0,initialY=0;
 	private void update() {
-		this.tetra.rotate(true, 1, -1, 2);
-//		if(initialX)
-//		int x= this.mouse.getX();
-//		int y= this.mouse.getY();
-//		if(this.mouse.getButton() == ClickType.LeftClick) {
-//			int xDiff = x -initialX;
-//			int yDiff = y -initialY;
-//			this.tetra.rotate(true, 0, -(xDiff), -(yDiff));
-//		}
-//		initialX= x;
-//		initialY= y;
-//		 this.tetra.rotate(true, 1,0, 0);
+		int x= this.mouse.getX();
+		int y= this.mouse.getY();
 		
+		if(this.mouse.isDraging && this.mouse.getButton() == ClickType.LeftClick) {
+			int xDiff = x -initialX;
+			int yDiff = y -initialY;
+			this.tetra.rotate(true, 0, -(yDiff/1.5), -(xDiff/1.5));
+		}
+		if(this.mouse.isDraging && this.mouse.getButton() == ClickType.RightClick) {
+			int xDiff = x -initialX;
+			this.tetra.rotate(true, -(xDiff/1.5), 0, 0);
+		}
+		initialX= x; 
+		initialY= y;
+		if(this.mouse.isScrollingUp()) {
+			PointConverter.zoomOut();
+		}else if(this.mouse.isScrollingDown()) {
+			PointConverter.zoomIn();
+		}
+		this.mouse.resetScroll();
 	}
 }

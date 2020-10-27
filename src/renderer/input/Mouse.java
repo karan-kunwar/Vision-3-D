@@ -12,6 +12,7 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 	private int mouseY = -1;
 	private int mouseB = -1;
 	private int scroll = 0;
+	public boolean isDraging = false;
 	
 	public int getX() {
 		return this.mouseX;
@@ -31,7 +32,7 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 			return ClickType.Unknown; 
 		}
 	}
-	 
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		this.mouseX = e.getX();
@@ -53,13 +54,13 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 	@Override
 	public void mousePressed(MouseEvent e) {
 		this.mouseB = e.getButton();
-		
+		this.isDraging = true;
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		this.mouseB =-1;
+		this.isDraging = false;
 	}
 
 	@Override
@@ -73,11 +74,19 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public boolean isScrollingUp() {
+		return this.scroll == -1;
+	}
+	public boolean isScrollingDown() {
+		return this.scroll == 1;
+	}
+	public void resetScroll() {
+		this.scroll = 0; 
+	}
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		// TODO Auto-generated method stub
-		
+		this.scroll = e.getWheelRotation();
 	}
 
 }
