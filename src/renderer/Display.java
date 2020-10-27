@@ -36,7 +36,7 @@ public class Display extends Canvas implements Runnable{
 		this.addMouseWheelListener(this.mouse);
 	}
 	
-	public synchronized void start() {
+	public synchronized void start(){
 		running = true; 
 		this.thread = new Thread(this, "Display");
 		this.thread.start();
@@ -131,11 +131,11 @@ public class Display extends Canvas implements Runnable{
 		
 		
 	}
-	ClickType prevClick = ClickType.Unknown;
-	int initialX,initialY;
+//	ClickType prevClick = ClickType.Unknown;
+	int initialX=0,initialY=0;
 	private void update() {
-		System.out.println(1);
-		this.tetra.rotate(true, 1, 0, 0);
+		this.tetra.rotate(true, initialX++, initialY--, initialX++);
+//		if(initialX)
 //		int x= this.mouse.getX();
 //		int y= this.mouse.getY();
 //		if(this.mouse.getButton() == ClickType.LeftClick) {

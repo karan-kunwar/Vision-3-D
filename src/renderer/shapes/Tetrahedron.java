@@ -27,7 +27,7 @@ public class Tetrahedron {
 		this.sortPolygons();
 	}
 	public void sortPolygons() { 
-		//MyPolygons.sortPolygons(this.polygons);
+		MyPolygons.sortPolygons(this.polygons);
 	}
 	public void setPolygonColor() {
 		for(MyPolygons mypoly: this.polygons) {
