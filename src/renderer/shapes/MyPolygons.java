@@ -42,7 +42,6 @@ public class MyPolygons {
 		g.fillPolygon(poly);
 	}
 	public void rotate(boolean clockwise, double xDeg,double yDeg,double zDeg) {
-		int k=0;
 		for(MyPoint p: this.points) {
 			PointConverter.rotateAlongX(p, clockwise, xDeg);
 			PointConverter.rotateAlongY(p, clockwise, yDeg);

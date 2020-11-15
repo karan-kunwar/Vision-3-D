@@ -6,11 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;	
 import renderer.input.Mouse;
 import javax.swing.JFrame;
-import renderer.point.MyPoint;
-import renderer.point.PointConverter;
-import renderer.input.ClickType;
-import renderer.shapes.MyPolygons;
-import renderer.shapes.Tetrahedron;
+import renderer.entity.entityManager;
 
 public class Display extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
@@ -21,7 +17,7 @@ public class Display extends Canvas implements Runnable{
 	public static final int WIDTH= 800;
 	public static final int HEIGHT= 600;
 	private static boolean running =false;
-	private Tetrahedron tetra; 
+	private entityManager entityManager;
 	private Mouse mouse;
 	
 	public Display() {
@@ -30,6 +26,7 @@ public class Display extends Canvas implements Runnable{
 		Dimension size = new Dimension(WIDTH,HEIGHT);
 		this.setPreferredSize(size);
 		this.mouse = new Mouse();
+		this.entityManager = new entityManager();
 		
 		this.addMouseListener(this.mouse);
 		this.addMouseMotionListener(this.mouse);
@@ -70,7 +67,7 @@ public class Display extends Canvas implements Runnable{
 		final double ns = 1000000000.0/30;
 		double delta = 0;
 		int frames=0;
-		init();
+		this.entityManager.init();
 		while(running) {
 			long now = System.nanoTime();
 			delta += (now-lasttime)/ns;
@@ -93,27 +90,6 @@ public class Display extends Canvas implements Runnable{
 		
 	}
 
-	private void init() {
-		int s = 100;
-		MyPoint p1 = new MyPoint(s/2,-s/2,-s/2);
-		MyPoint p2 = new MyPoint(s/2,s/2,-s/2);
-		MyPoint  p3 = new MyPoint(s/2,s/2,s/2);
-		MyPoint p4 = new MyPoint(s/2,-s/2,s/2);
-		MyPoint p5 = new MyPoint(-s/2,-s/2,-s/2);
-		MyPoint p6 = new MyPoint(-s/2,s/2,-s/2);
-		MyPoint p7 = new MyPoint(-s/2,s/2,s/2);
-		MyPoint p8 = new MyPoint(-s/2,-s/2,s/2);
-		
-		this.tetra = new Tetrahedron(
-				new MyPolygons(Color.BLUE,p5,p6,p7,p8),
-				new MyPolygons(Color.GREEN,p1,p2,p6,p5 ),
-				new MyPolygons(Color.YELLOW,p4,p3,p7,p8),
-				new MyPolygons(Color.WHITE,p1,p5,p8,p4),
-				new MyPolygons(Color.ORANGE,p2,p6,p7,p3),
-				new MyPolygons(Color.RED,p1,p2,p3,p4)
-				);
-		
-	}
 	private void render() {
 
 		BufferStrategy bs= this.getBufferStrategy();
@@ -125,34 +101,13 @@ public class Display extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		tetra.render(g);
+		this.entityManager.render(g);
 		g.dispose();
 		bs.show();
 		
-		
 	}
-	ClickType prevClick = ClickType.Unknown;
-	int initialX=0,initialY=0;
+
 	private void update() {
-		int x= this.mouse.getX();
-		int y= this.mouse.getY();
-		
-		if(this.mouse.isDraging && this.mouse.getButton() == ClickType.LeftClick) {
-			int xDiff = x -initialX;
-			int yDiff = y -initialY;
-			this.tetra.rotate(true, 0, -(yDiff/1.5), -(xDiff/1.5));
-		}
-		if(this.mouse.isDraging && this.mouse.getButton() == ClickType.RightClick) {
-			int xDiff = x -initialX;
-			this.tetra.rotate(true, -(xDiff/1.5), 0, 0);
-		}
-		initialX= x; 
-		initialY= y;
-		if(this.mouse.isScrollingUp()) {
-			PointConverter.zoomOut();
-		}else if(this.mouse.isScrollingDown()) {
-			PointConverter.zoomIn();
-		}
-		this.mouse.resetScroll();
+		this.entityManager.update(this.mouse);
 	}
 }
