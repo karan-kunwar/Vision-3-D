@@ -8,12 +8,14 @@ import java.awt.Graphics;
 import renderer.entity.builder.basicEntityBuilder;
 import renderer.input.ClickType;
 import renderer.input.Mouse;
+import renderer.input.myVector;
 import renderer.point.PointConverter;
 
 public class entityManager {
     private List<IEntity> entities;
     private int initialX;
     private int initialY;
+    private myVector lightVector =  myVector.normalize(new myVector(1,1,1));
 
     public entityManager(){
         this.entities = new ArrayList<IEntity>();
@@ -21,6 +23,7 @@ public class entityManager {
 
     public void init(){
         this.entities.add(basicEntityBuilder.createDiamond(new Color(200,40,150), 100, 0, 0, 0));
+        this.setLighting();
     }
 
     public void update(Mouse mouse){
@@ -30,11 +33,11 @@ public class entityManager {
 		if(mouse.isDraging && mouse.getButton() == ClickType.LeftClick) {
 			int xDiff = x -this.initialX;
 			int yDiff = y -this.initialY;
-			this.rotate(true, 0, -(yDiff/1.5), -(xDiff/1.5));
+			this.rotate(true, 0, -(yDiff/1.5), -(xDiff/1.5),lightVector);
 		}
 		if(mouse.isDraging && mouse.getButton() == ClickType.RightClick) {
 			int xDiff = x -initialX;
-			this.rotate(true, -(xDiff/1.5), 0, 0);
+			this.rotate(true, -(xDiff/1.5), 0, 0,lightVector);
 		}
 		initialX= x; 
 		initialY= y;
@@ -52,9 +55,15 @@ public class entityManager {
         }
     }
 
-    public void rotate(boolean clockwise,double xDeg,double yDeg,double zDeg){
+    public void rotate(boolean clockwise,double xDeg,double yDeg,double zDeg,myVector lightVector){
         for(IEntity entity: this.entities){
-            entity.rotate(clockwise, xDeg, yDeg, zDeg);
+            entity.rotate(clockwise, xDeg, yDeg, zDeg,lightVector);
+        }
+    }
+
+    private void setLighting(){
+        for(IEntity entity: this.entities){
+            entity.setLighting(this.lightVector);
         }
     }
 }

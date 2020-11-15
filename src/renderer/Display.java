@@ -60,6 +60,7 @@ public class Display extends Canvas implements Runnable{
 		
 		display.start();
 	}
+	
 	@Override
 	public void run() {
 		long lasttime= System.nanoTime();
@@ -73,13 +74,13 @@ public class Display extends Canvas implements Runnable{
 			delta += (now-lasttime)/ns;
 			lasttime = now;
 			
-			
 			while(delta>=1) {
 				update();
 				delta--;
 				render();
 				frames++;
 			}
+
 			if(System.currentTimeMillis()-timer>=1000) {
 				timer+=1000;
 				this.frame.setTitle(title+" - "+ frames+ "fps");
@@ -87,7 +88,6 @@ public class Display extends Canvas implements Runnable{
 			}
 		}
 		stop();
-		
 	}
 
 	private void render() {

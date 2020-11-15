@@ -59,7 +59,7 @@ public class basicEntityBuilder {
 			polygons[i+edges] = new MyPolygons(outerPoints[i%edges],innerPoints[i], innerPoints[(i+1)%edges],outerPoints[(i+1)%edges]);
 		}
 		polygons[2*edges] = new MyPolygons(innerPoints);
-		Tetrahedron tetra = new Tetrahedron(color, true, polygons);
+		Tetrahedron tetra = new Tetrahedron(color,polygons);
 		tetras.add(tetra);
         return new Entity(tetras);
 	}

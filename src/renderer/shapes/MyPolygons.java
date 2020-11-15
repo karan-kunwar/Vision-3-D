@@ -9,28 +9,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import renderer.input.myVector;
 import renderer.point.MyPoint;
 import renderer.point.PointConverter;
 
 public class MyPolygons {
+	private static final double AmbientLight = 0.05;
 	private MyPoint[] points;
-	private Color color;
+	private Color baseColor,lightingColor;
+
 	public MyPolygons(Color color,MyPoint... points) {
-		this.color = color;
+		this.baseColor = this.lightingColor = color;
 		this.points = new MyPoint[points.length];
 		for(int i=0;i<points.length;i++) {
 			MyPoint p = points[i];
 			this.points[i]= new MyPoint(p.x,p.y,p.z);
 		}
 	}
+
 	public MyPolygons(MyPoint... points) {
-		this.color = Color.WHITE;
+		this.baseColor = this.lightingColor = Color.WHITE;
 		this.points = new MyPoint[points.length];
 		for(int i=0;i<points.length;i++) {
 			MyPoint p = points[i];
 			this.points[i]= new MyPoint(p.x,p.y,p.z);
 		}
 	}
+
 	public void render(Graphics g) {
 		
 		Polygon poly= new Polygon();
@@ -38,18 +43,21 @@ public class MyPolygons {
 			Point p = PointConverter.convertPoint(this.points[i]);
 			poly.addPoint(p.x, p.y);
 		}
-		g.setColor(this.color);
+		g.setColor(this.lightingColor);
 		g.fillPolygon(poly);
 	}
-	public void rotate(boolean clockwise, double xDeg,double yDeg,double zDeg) {
+
+	public void rotate(boolean clockwise, double xDeg,double yDeg,double zDeg,myVector lightVector) {
 		for(MyPoint p: this.points) {
 			PointConverter.rotateAlongX(p, clockwise, xDeg);
 			PointConverter.rotateAlongY(p, clockwise, yDeg);
  			PointConverter.rotateAlongZ(p, clockwise, zDeg);
 		}  	
+		this.setLighting(lightVector);
 	}
+
 	public void setColor(Color color) {
-		this.color = color;
+		this.baseColor = this.lightingColor = color;
 	}
 	
 	public double getAvgX() {
@@ -59,6 +67,7 @@ public class MyPolygons {
 		}
 		return sum/this.points.length;
 	}
+
 	public static MyPolygons[] sortPolygons(MyPolygons[] polygons) {
 		List<MyPolygons> polygonList = new ArrayList<MyPolygons>();
 		for(MyPolygons poly: polygons) {
@@ -74,6 +83,29 @@ public class MyPolygons {
 			polygons[i]= polygonList.get(i);
 		}
 		return polygons;
+	}
+
+
+	public void setLighting(myVector lightVector){
+		if(this.points.length<3){
+			return;
+		}
+		myVector v1 = new myVector(this.points[0],this.points[1]);
+		myVector v2 = new myVector(this.points[1],this.points[2]);
+		myVector normal = myVector.normalize(myVector.cross(v2, v1));
+		double dot = myVector.dot(normal, lightVector);
+		double sign = dot<0 ? -1 : 1;
+		dot = sign * dot * dot;
+		dot = (dot+1)/2 *(1-AmbientLight);
+		double lightRatio = Math.min(1,Math.max(0,AmbientLight + dot));
+		this.updateLightingColor(lightRatio);
+	}
+
+	private void updateLightingColor(double lightRatio){
+		int red = (int) (this.baseColor.getRed()*lightRatio);
+		int green = (int) (this.baseColor.getGreen()*lightRatio);
+		int blue = (int) (this.baseColor.getBlue()*lightRatio);
+		this.lightingColor = new Color(red,green,blue);
 	}
 	
 }

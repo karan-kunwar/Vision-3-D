@@ -3,6 +3,7 @@ package renderer.entity;
 import java.awt.Graphics;
 import java.util.List;
 
+import renderer.input.myVector;
 import renderer.shapes.Tetrahedron;
 
 public class Entity implements IEntity {
@@ -21,11 +22,17 @@ public class Entity implements IEntity {
     }
 
     @Override
-    public void rotate(boolean clockwise, double xDeg, double yDeg, double zDeg) {
+    public void rotate(boolean clockwise, double xDeg, double yDeg, double zDeg,myVector lightVector) {
         for(Tetrahedron tetra: this.tetrahedrons){
-            tetra.rotate(clockwise, xDeg, yDeg, zDeg);
+            tetra.rotate(clockwise, xDeg, yDeg, zDeg,lightVector);
         }
+    }
 
+    @Override
+    public void setLighting(myVector lightVector){
+        for(Tetrahedron tetra: this.tetrahedrons){
+            tetra.setLighting(lightVector);
+        }
     }
     
 }
