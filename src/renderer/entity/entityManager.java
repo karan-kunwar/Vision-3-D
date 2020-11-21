@@ -29,7 +29,10 @@ public class entityManager {
             this.entities.add(basicEntityBuilder.createCube(100, 0, 0, 0));
         else if(shape=="Diamond")
             this.entities.add(basicEntityBuilder.createDiamond(new Color(200,40,150), 100, 0, 0, 0));
-    
+        else if(shape=="Pyramid")
+            this.entities.add(basicEntityBuilder.createPyramid(100, 0, 0, 0));
+        else if(shape=="Tetra Star")
+            this.entities.add(basicEntityBuilder.createTetraStar(100, 0, 0, 0));
         this.setLighting();
     }
 
