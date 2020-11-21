@@ -63,7 +63,7 @@ public class welcome {
 			}
 		});
 		
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Cube", "Diamond", "Pyramid", "Tetra Star"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Cube", "Diamond", "Pyramid", "Tetra Star","Icosahedron"}));
 		
 		
 		comboBox.setBounds(117, 147, 146, 24);
