@@ -31,10 +31,12 @@ public class entityManager {
             this.entities.add(basicEntityBuilder.createDiamond(new Color(200,40,150), 250, 0, 0, 0));
         else if(shape=="Pyramid")
             this.entities.add(basicEntityBuilder.createPyramid(250, 0, 0, 0));
-        else if(shape=="Tetra Star")
-            this.entities.add(basicEntityBuilder.createTetraStar(250, 0, 0, 0));
+        else if(shape=="Octahedron")
+            this.entities.add(basicEntityBuilder.createOctahedron(150, 0, 0, 0));
         else if(shape=="Icosahedron")
             this.entities.add(basicEntityBuilder.createIcosahedron(250, 0, 0, 0));
+        else if (shape == "Dodecahedron")
+            this.entities.add(basicEntityBuilder.createDodecahedron(100, 0, 0, 0));
         this.setLighting();
     }
 

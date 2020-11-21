@@ -84,37 +84,28 @@ public class basicEntityBuilder {
         return new Entity(tetras);
 	}
 	
-	public static IEntity createTetraStar(double size,double centerX,double centerY,double centerZ) {
+	public static IEntity createOctahedron(double size, double centerX, double centerY, double centerZ) {
 		List<Tetrahedron> tetras = new ArrayList<Tetrahedron>();
 		double base = 100.0;
-		MyPoint top = new MyPoint(centerX, centerY, centerZ+size/2);
+		MyPoint top = new MyPoint(centerX, centerY, centerZ + size / 2);
 		MyPoint[] basePoints = new MyPoint[4];
-		basePoints[0] = new MyPoint(centerX+base/2, centerY+base/2, centerZ-size/2);
-		basePoints[1] = new MyPoint(centerX+base/2, centerY-base/2, centerZ-size/2);
-		basePoints[2] = new MyPoint(centerX-base/2, centerY-base/2, centerZ-size/2);
-		basePoints[3] = new MyPoint(centerX-base/2, centerY+base/2, centerZ-size/2);
-		MyPolygons[] polygons = new MyPolygons[10];
-		polygons[0] = new MyPolygons(basePoints[0],basePoints[1],top);
-		polygons[1] = new MyPolygons(basePoints[1],basePoints[2],top);
-		polygons[2] = new MyPolygons(basePoints[2],basePoints[3],top);
-		polygons[3] = new MyPolygons(basePoints[3],basePoints[0],top);
+		basePoints[0] = new MyPoint(centerX + base / 2, centerY + base / 2, centerZ - size / 2);
+		basePoints[1] = new MyPoint(centerX + base / 2, centerY - base / 2, centerZ - size / 2);
+		basePoints[2] = new MyPoint(centerX - base / 2, centerY - base / 2, centerZ - size / 2);
+		basePoints[3] = new MyPoint(centerX - base / 2, centerY + base / 2, centerZ - size / 2);
+		MyPolygons[] polygons = new MyPolygons[9];
+		polygons[0] = new MyPolygons(basePoints[0], basePoints[1], top);
+		polygons[1] = new MyPolygons(basePoints[1], basePoints[2], top);
+		polygons[2] = new MyPolygons(basePoints[2], basePoints[3], top);
+		polygons[3] = new MyPolygons(basePoints[3], basePoints[0], top);
 		polygons[4] = new MyPolygons(basePoints);
-//		Tetrahedron tetra = new Tetrahedron(new Color(237,201,175), polygons);
-//		double base2 = 100.0;
-		MyPoint bottom = new MyPoint(centerX, centerY, centerZ-size/2-size/4);
-		MyPoint[] basePoints2 = new MyPoint[4];
-		basePoints2[0] = new MyPoint(centerX+base/2, centerY+base/2, centerZ+size/2-size/4);
-		basePoints2[1] = new MyPoint(centerX+base/2, centerY-base/2, centerZ+size/2-size/4);
-		basePoints2[2] = new MyPoint(centerX-base/2, centerY-base/2, centerZ+size/2-size/4);
-		basePoints2[3] = new MyPoint(centerX-base/2, centerY+base/2, centerZ+size/2-size/4);
-//		MyPolygons[] polygons2 = new MyPolygons[5];
-		polygons[5] = new MyPolygons(basePoints2[0],basePoints2[1],bottom);
-		polygons[6] = new MyPolygons(basePoints2[1],basePoints2[2],bottom);
-		polygons[7] = new MyPolygons(basePoints2[2],basePoints2[3],bottom);
-		polygons[8] = new MyPolygons(basePoints2[3],basePoints2[0],bottom);
-		polygons[9] = new MyPolygons(basePoints2);
-		Tetrahedron tetra2 = new Tetrahedron(new Color(52, 235, 73), polygons);
-//		tetras.add(tetra);
+
+		MyPoint bottom = new MyPoint(centerX, centerY, centerZ - (3 * size) / 2);
+		polygons[5] = new MyPolygons(basePoints[0], basePoints[1], bottom);
+		polygons[6] = new MyPolygons(basePoints[1], basePoints[2], bottom);
+		polygons[7] = new MyPolygons(basePoints[2], basePoints[3], bottom);
+		polygons[8] = new MyPolygons(basePoints[3], basePoints[0], bottom);
+		Tetrahedron tetra2 = new Tetrahedron(new Color(96, 83, 65), polygons);
 		tetras.add(tetra2);
 		return new Entity(tetras);
 	}
@@ -170,5 +161,54 @@ public class basicEntityBuilder {
 		Tetrahedron tetra = new Tetrahedron(Color.RED, polygons);
         tetras.add(tetra);
         return new Entity(tetras);	
+	}
+
+	public static IEntity createDodecahedron(double size, double centerX, double centerY, double centerZ) {
+		List<Tetrahedron> tetras = new ArrayList<Tetrahedron>();
+
+		double c0 = (1 + Math.sqrt(5)) / 4;
+		double c1 = (3 + Math.sqrt(5)) / 4;
+		c0 *= size / 2;
+		c1 *= size / 2;
+		MyPoint[] points = new MyPoint[20];
+		points[0] = new MyPoint(centerX, centerY + size / 4, centerZ + c1);
+		points[1] = new MyPoint(centerX, centerY + size / 4, centerZ - c1);
+		points[2] = new MyPoint(centerX, centerY - size / 4, centerZ + c1);
+		points[3] = new MyPoint(centerX, centerY - size / 4, centerZ - c1);
+		points[4] = new MyPoint(centerX + c1, centerY, centerZ + size / 4);
+		points[5] = new MyPoint(centerX + c1, centerY, centerZ - size / 4);
+		points[6] = new MyPoint(centerX - c1, centerY, centerZ + size / 4);
+		points[7] = new MyPoint(centerX - c1, centerY, centerZ - size / 4);
+		points[8] = new MyPoint(centerX + size / 4, centerY + c1, centerZ);
+		points[9] = new MyPoint(centerX + size / 4, centerY - c1, centerZ);
+		points[10] = new MyPoint(centerX - size / 4, centerY + c1, centerZ);
+		points[11] = new MyPoint(centerX - size / 4, centerY - c1, centerZ);
+		points[12] = new MyPoint(centerX + c0, centerY + c0, centerZ + c0);
+		points[13] = new MyPoint(centerX + c0, centerY + c0, centerZ - c0);
+		points[14] = new MyPoint(centerX + c0, centerY - c0, centerZ + c0);
+		points[15] = new MyPoint(centerX + c0, centerY - c0, centerZ - c0);
+		points[16] = new MyPoint(centerX - c0, centerY + c0, centerZ + c0);
+		points[17] = new MyPoint(centerX - c0, centerY + c0, centerZ - c0);
+		points[18] = new MyPoint(centerX - c0, centerY - c0, centerZ + c0);
+		points[19] = new MyPoint(centerX - c0, centerY - c0, centerZ - c0);
+
+		MyPolygons[] polygons = new MyPolygons[12];
+
+		polygons[0] = new MyPolygons(points[0], points[2], points[14], points[4], points[12]);
+		polygons[1] = new MyPolygons(points[0], points[12], points[8], points[10], points[16]);
+		polygons[2] = new MyPolygons(points[0], points[16], points[6], points[18], points[2]);
+		polygons[3] = new MyPolygons(points[7], points[6], points[16], points[10], points[17]);
+		polygons[4] = new MyPolygons(points[7], points[17], points[1], points[3], points[19]);
+		polygons[5] = new MyPolygons(points[7], points[19], points[11], points[18], points[6]);
+		polygons[6] = new MyPolygons(points[9], points[11], points[19], points[3], points[15]);
+		polygons[7] = new MyPolygons(points[9], points[15], points[5], points[4], points[14]);
+		polygons[8] = new MyPolygons(points[9], points[14], points[2], points[18], points[11]);
+		polygons[9] = new MyPolygons(points[13], points[1], points[17], points[10], points[8]);
+		polygons[10] = new MyPolygons(points[13], points[8], points[12], points[4], points[5]);
+		polygons[11] = new MyPolygons(points[13], points[5], points[15], points[3], points[1]);
+
+		Tetrahedron tetra = new Tetrahedron(Color.cyan, polygons);
+		tetras.add(tetra);
+		return new Entity(tetras);
 	}
 }
