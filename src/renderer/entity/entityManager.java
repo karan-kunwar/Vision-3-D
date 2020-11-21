@@ -16,14 +16,25 @@ public class entityManager {
     private int initialX;
     private int initialY;
     private myVector lightVector =  myVector.normalize(new myVector(1,1,1));
+    public static double speedx=1.0;
+    public static double speedy=1.0;
+    public static double speedz=1.0;
 
     public entityManager(){
         this.entities = new ArrayList<IEntity>();
     }
 
-    public void init(){
-        this.entities.add(basicEntityBuilder.createDiamond(new Color(200,40,150), 100, 0, 0, 0));
+    public void init(String shape){
+        if(shape=="Cube")	
+            this.entities.add(basicEntityBuilder.createCube(100, 0, 0, 0));
+        else if(shape=="Diamond")
+            this.entities.add(basicEntityBuilder.createDiamond(new Color(200,40,150), 100, 0, 0, 0));
+    
         this.setLighting();
+    }
+
+    public void update(){
+    	this.rotate(true, speedx, speedy, speedz, lightVector);
     }
 
     public void update(Mouse mouse){
