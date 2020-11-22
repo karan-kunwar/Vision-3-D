@@ -174,7 +174,7 @@ public class Display extends Canvas implements Runnable{
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(64,64,64));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		this.entityManager.render(g);

@@ -26,7 +26,7 @@ public class entityManager {
 
     public void init(String shape){
         if(shape=="Cube")	
-            this.entities.add(basicEntityBuilder.createCube(250, 0, 0, 0));
+            this.entities.add(basicEntityBuilder.createCube(200, 0, 0, 0));
         else if(shape=="Diamond")
             this.entities.add(basicEntityBuilder.createDiamond(new Color(200,40,150), 250, 0, 0, 0));
         else if(shape=="Pyramid")
@@ -36,7 +36,7 @@ public class entityManager {
         else if(shape=="Icosahedron")
             this.entities.add(basicEntityBuilder.createIcosahedron(250, 0, 0, 0));
         else if (shape == "Dodecahedron")
-            this.entities.add(basicEntityBuilder.createDodecahedron(100, 0, 0, 0));
+            this.entities.add(basicEntityBuilder.createDodecahedron(200, 0, 0, 0));
         this.setLighting();
     }
 

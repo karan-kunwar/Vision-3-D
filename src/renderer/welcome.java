@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.border.TitledBorder;
 
 public class welcome {
@@ -55,7 +56,11 @@ public class welcome {
 		String[] args= new String[3];
 		args[0]="hi";
 		
-		
+		//frame.setUndecorated(true);
+        //frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+        frame.setVisible(true);
+        
+        
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
