@@ -3,11 +3,13 @@ package renderer;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -46,7 +48,7 @@ public class welcome {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(0, 0, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -55,7 +57,6 @@ public class welcome {
 		
 		
 		JComboBox comboBox = new JComboBox();
-		
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selected= comboBox.getSelectedItem().toString();
@@ -66,7 +67,7 @@ public class welcome {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Cube", "Diamond", "Pyramid", "Octahedron","Icosahedron","Dodecahedron"}));
 		
 		
-		comboBox.setBounds(117, 147, 146, 24);
+		comboBox.setBounds(200, 200, 200, 24);
 		frame.getContentPane().add(comboBox);
 		
 		JButton btnHello = new JButton("Manual Mode");
@@ -83,7 +84,7 @@ public class welcome {
 			}
 		});
 		
-		btnHello.setBounds(132, 34, 146, 25);
+		btnHello.setBounds(200, 250, 200, 25);
 		frame.getContentPane().add(btnHello);
 		
 		JButton btnNewButton = new JButton("Free Rotation Mode");
@@ -99,7 +100,7 @@ public class welcome {
 				}
 			}
 		});
-		btnNewButton.setBounds(117, 89, 174, 25);
+		btnNewButton.setBounds(200, 300, 200, 25);
 		frame.getContentPane().add(btnNewButton);
 		
 		JPanel panel = new JPanel();
@@ -113,5 +114,12 @@ public class welcome {
 		panel.add(layeredPane);
 		layeredPane.setLayout(null);
 			
+//		TRIED TO ADD IMAGE - KK (not working)
+//		JLabel label = new JLabel();
+//        label.setIcon(new ImageIcon("applelogo.png"));// your image here
+//        panel.add(label);
+//        frame.setLocationRelativeTo(null);
+//        frame.pack();
+//        frame.setVisible(true);
 	}
 }

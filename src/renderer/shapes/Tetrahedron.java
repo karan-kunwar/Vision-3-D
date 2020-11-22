@@ -19,7 +19,6 @@ public class Tetrahedron {
 		this.sortPolygons();
 	}
 	public Tetrahedron(MyPolygons... polygons) {
-		this.color = Color.WHITE;
 		this.polygons = polygons;
 	}
 	public void render(Graphics g) {
