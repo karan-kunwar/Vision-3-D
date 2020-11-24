@@ -63,10 +63,12 @@ public class Display extends Canvas implements Runnable{
 		SpeedIncButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try
-				{
-					entityManager.speedx+=step;
-					entityManager.speedy+=step;
-					entityManager.speedz+=step;
+				{	
+					if(!Mode) {
+						entityManager.speedx+=step;
+						entityManager.speedy+=step;
+						entityManager.speedz+=step;
+					}
 				}catch (Exception err) {
 					err.printStackTrace();
 				}

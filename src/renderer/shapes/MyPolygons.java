@@ -14,7 +14,7 @@ import renderer.point.MyPoint;
 import renderer.point.PointConverter;
 
 public class MyPolygons {
-	private static final double AmbientLight = 0.05;
+	private static final double AmbientLight = 0.40;
 	private MyPoint[] points;
 	private Color baseColor,lightingColor;
 

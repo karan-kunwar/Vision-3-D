@@ -1,9 +1,6 @@
-/.classpath
-/.project
-/.settings/
-/.vscode/
-/LastWorkUpto/
-/README.md
+.classpath
+.git
+.project
+.settings
+.vscode
 /renderer/
-/applelogo.png
-/.DS_Store
