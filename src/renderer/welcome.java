@@ -1,6 +1,7 @@
 package renderer;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,8 +60,8 @@ public class welcome {
 		//frame.setUndecorated(true);
         //frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
         frame.setVisible(true);
-        
-        
+
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,17 +108,19 @@ public class welcome {
 		});
 		btnNewButton.setBounds(200, 300, 200, 25);
 		frame.getContentPane().add(btnNewButton);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "JPanel title", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(24, 57, 178, -39);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JPanel layeredPane = new JPanel();
-		layeredPane.setBounds(5, 17, 168, -61);
-		panel.add(layeredPane);
-		layeredPane.setLayout(null);
+
+		      // Adding Icon
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(207, 12, 193, 155);
+		frame.getContentPane().add(panel_1);
+
+		JLabel lblNewLabel = new JLabel("");
+
+		lblNewLabel.setIcon(
+				new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/renderer/Images/applelogo.png"))
+						.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH)));
+		panel_1.add(lblNewLabel);
 			
 //		TRIED TO ADD IMAGE - KK (not working)
 //		JLabel label = new JLabel();
