@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import renderer.entity.builder.basicEntityBuilder;
 import renderer.input.ClickType;
 import renderer.input.Mouse;
-import renderer.input.myVector;
+import renderer.point.myVector;
 import renderer.point.PointConverter;
 
 public class entityManager {

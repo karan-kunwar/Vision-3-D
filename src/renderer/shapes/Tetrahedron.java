@@ -3,7 +3,7 @@ package renderer.shapes;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import renderer.input.myVector;
+import renderer.point.myVector;
 
 public class Tetrahedron {
 	private MyPolygons[] polygons;
@@ -11,11 +11,7 @@ public class Tetrahedron {
 	public Tetrahedron(Color color,MyPolygons... polygons) {
 		this.color = color;
 		this.polygons = polygons;
-		// if(decayColor){
-		// 	this.setDecayPolygonColor();
-		// } else{
-			this.setPolygonColor();
-		// }
+		this.setPolygonColor();
 		this.sortPolygons();
 	}
 	public Tetrahedron(MyPolygons... polygons) {

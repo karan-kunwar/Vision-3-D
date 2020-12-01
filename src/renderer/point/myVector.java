@@ -1,6 +1,4 @@
-package renderer.input;
-
-import renderer.point.MyPoint;
+package renderer.point;
 
 public class myVector {
     

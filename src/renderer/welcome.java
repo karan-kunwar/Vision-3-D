@@ -12,8 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-import javax.swing.border.TitledBorder;
 
 public class welcome {
 
@@ -45,8 +43,6 @@ public class welcome {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	// Tips by Anii:
-	// Frame.dispose
 	
 	private void initialize() {
 		frame = new JFrame();
@@ -57,8 +53,6 @@ public class welcome {
 		String[] args= new String[3];
 		args[0]="hi";
 		
-		//frame.setUndecorated(true);
-        //frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
         frame.setVisible(true);
 
 		
@@ -118,16 +112,9 @@ public class welcome {
 		JLabel lblNewLabel = new JLabel("");
 
 		lblNewLabel.setIcon(
-				new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/renderer/Images/3d.png"))
+				new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/renderer/Images/Icon.png"))
 						.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 		panel_1.add(lblNewLabel);
 			
-//		TRIED TO ADD IMAGE - KK (not working)
-//		JLabel label = new JLabel();
-//        label.setIcon(new ImageIcon("applelogo.png"));// your image here
-//        panel.add(label);
-//        frame.setLocationRelativeTo(null);
-//        frame.pack();
-//        frame.setVisible(true);
 	}
 }

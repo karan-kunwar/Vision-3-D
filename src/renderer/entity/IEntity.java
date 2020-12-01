@@ -2,7 +2,7 @@ package renderer.entity;
 
 import java.awt.Graphics;
 
-import renderer.input.myVector;
+import renderer.point.myVector;
 
 public interface IEntity {
     
