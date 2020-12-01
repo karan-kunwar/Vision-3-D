@@ -118,8 +118,8 @@ public class welcome {
 		JLabel lblNewLabel = new JLabel("");
 
 		lblNewLabel.setIcon(
-				new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/renderer/Images/applelogo.png"))
-						.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH)));
+				new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/renderer/Images/3d.png"))
+						.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 		panel_1.add(lblNewLabel);
 			
 //		TRIED TO ADD IMAGE - KK (not working)
