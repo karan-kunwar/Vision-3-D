@@ -21,12 +21,12 @@ public class basicEntityBuilder {
 		MyPoint p8 = new MyPoint(centerX-size/2,centerY-size/2,centerZ+size/2);
 		
 		Tetrahedron tetra = new Tetrahedron(
-				new MyPolygons(Color.BLUE,p5,p6,p7,p8),
-				new MyPolygons(Color.GREEN,p1,p2,p6,p5 ),
-				new MyPolygons(Color.YELLOW,p4,p3,p7,p8),
+				new MyPolygons(new Color(255,88,0),p5,p6,p7,p8),
+				new MyPolygons(new Color(0,155,72),p1,p2,p6,p5 ),
+				new MyPolygons(new Color(0,70,173),p4,p3,p7,p8),
 				new MyPolygons(Color.WHITE,p1,p5,p8,p4),
-				new MyPolygons(Color.ORANGE,p2,p6,p7,p3),
-				new MyPolygons(Color.RED,p1,p2,p3,p4)
+				new MyPolygons(new Color(255,213,0),p2,p6,p7,p3),
+				new MyPolygons(new Color(183,18,52),p1,p2,p3,p4)
                 );
         List<Tetrahedron> tetras = new ArrayList<Tetrahedron>();
         tetras.add(tetra);
@@ -196,14 +196,14 @@ public class basicEntityBuilder {
 
 		polygons[0] = new MyPolygons(Color.BLUE,points[0], points[2], points[14], points[4], points[12]);
 		polygons[1] = new MyPolygons(Color.YELLOW,points[0], points[12], points[8], points[10], points[16]);
-		polygons[2] = new MyPolygons(Color.YELLOW,points[0], points[16], points[6], points[18], points[2]);
-		polygons[3] = new MyPolygons(Color.WHITE,points[7], points[6], points[16], points[10], points[17]);
+		polygons[2] = new MyPolygons(Color.WHITE,points[0], points[16], points[6], points[18], points[2]);
+		polygons[3] = new MyPolygons(Color.YELLOW,points[7], points[6], points[16], points[10], points[17]);
 		polygons[4] = new MyPolygons(Color.WHITE,points[7], points[17], points[1], points[3], points[19]);
 		polygons[5] = new MyPolygons(Color.GREEN,points[7], points[19], points[11], points[18], points[6]);
-		polygons[6] = new MyPolygons(Color.RED,points[9], points[11], points[19], points[3], points[15]);
-		polygons[7] = new MyPolygons(Color.RED,points[9], points[15], points[5], points[4], points[14]);
+		polygons[6] = new MyPolygons(Color.WHITE,points[9], points[11], points[19], points[3], points[15]);
+		polygons[7] = new MyPolygons(Color.BLUE,points[9], points[15], points[5], points[4], points[14]);
 		polygons[8] = new MyPolygons(Color.GREEN,points[9], points[14], points[2], points[18], points[11]);
-		polygons[9] = new MyPolygons(new Color(255,0,255),points[13], points[1], points[17], points[10], points[8]);
+		polygons[9] = new MyPolygons(Color.YELLOW,points[13], points[1], points[17], points[10], points[8]);
 		polygons[10] = new MyPolygons(Color.BLUE,points[13], points[8], points[12], points[4], points[5]);
 		polygons[11] = new MyPolygons(new Color(255,0,255),points[13], points[5], points[15], points[3], points[1]);
 

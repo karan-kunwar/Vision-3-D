@@ -11,11 +11,7 @@ public class Tetrahedron {
 	public Tetrahedron(Color color,MyPolygons... polygons) {
 		this.color = color;
 		this.polygons = polygons;
-		// if(decayColor){
-		// 	this.setDecayPolygonColor();
-		// } else{
-			this.setPolygonColor();
-		// }
+		this.setPolygonColor();
 		this.sortPolygons();
 	}
 	public Tetrahedron(MyPolygons... polygons) {
