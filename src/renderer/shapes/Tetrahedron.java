@@ -3,7 +3,7 @@ package renderer.shapes;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import renderer.input.myVector;
+import renderer.point.myVector;
 
 public class Tetrahedron {
 	private MyPolygons[] polygons;

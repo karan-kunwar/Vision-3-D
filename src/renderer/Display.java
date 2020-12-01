@@ -16,12 +16,12 @@ import renderer.entity.entityManager;
 
 public class Display extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
-
+	
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 	private Thread thread;
 	private JFrame frame;
 	private static String title = "3D Animation";
-	public static final int WIDTH= 800;
-	public static final int HEIGHT= 600;
 	private static boolean running =false;
 	private static double step=0.7;
 	private entityManager entityManager;

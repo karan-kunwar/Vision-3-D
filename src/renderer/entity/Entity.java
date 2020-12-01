@@ -3,7 +3,7 @@ package renderer.entity;
 import java.awt.Graphics;
 import java.util.List;
 
-import renderer.input.myVector;
+import renderer.point.myVector;
 import renderer.shapes.Tetrahedron;
 
 public class Entity implements IEntity {
