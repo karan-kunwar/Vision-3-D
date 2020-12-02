@@ -190,7 +190,7 @@ public class Display extends Canvas implements Runnable{
 		this.entityManager.update(this.mouse);
 		else
 		{
-			this.entityManager.update();
+			this.entityManager.updatefree(this.mouse);
 		}
 			
 	}

@@ -39,9 +39,28 @@ public class entityManager {
             this.entities.add(basicEntityBuilder.createDodecahedron(200, 0, 0, 0));
         this.setLighting();
     }
-
-    public void update(){
-    	this.rotate(true, speedx, speedy, speedz, lightVector);
+    long x=0,y=0;
+    int ch=0;
+    public void updatefree(Mouse mouse){
+    	
+    	
+    	if(ch==0) {
+    		x++;
+    		y=x*x/90000;
+    		this.rotate(true, speedx*x/300, speedy, speedz*y, lightVector);
+    		if(x==300)ch=1;
+    	}else {
+    		x--;
+    		y=x*x*x/27000000;
+    		this.rotate(true, speedx*x/300, -speedy, speedz*y, lightVector);
+    		if(x==5)ch=0;
+    	}
+    	if(mouse.isScrollingUp()) {
+			PointConverter.zoomOut();
+		}else if(mouse.isScrollingDown()) {
+			PointConverter.zoomIn();
+		}
+		mouse.resetScroll();
     }
 
     public void update(Mouse mouse){
